@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Strong Password Generator</title>
+    <link rel="stylesheet" href="style.css"> </head>
+
+<body>
+    <header>
+        <h1>COMP 3061 Computer Security Fundemantals - Assignment1</h1> 
+        <h3>Group G1 - Strong Password Generator and Checker</h3>
+        </header>
+    <div id="start_wrapper">
+       <div id="tool">
+        <div id="Aa" class="circle circle_bckgrnd big_red">Aa<img id="AaCh" class="check" src="images/check.svg"> </div>
+        <div id="A" class="circle circle_bckgrnd small_red">
+            <p>A</p><img id="ACh" class="check" src="images/check.svg"> </div>
+        <div id="a" class="circle circle_bckgrnd small_red">
+            <p>a</p><img id="aCh" class="check" src="images/check.svg"> </div>
+        <div id="a1234" class="circle circle_bckgrnd big_red "> <span id="one" class="numbers">1</span> <span id="two" class="numbers">2</span> <span id="three" class="numbers">3</span> <span id="four" class="numbers">4</span><img id="a1234Ch" class="check" src="images/check.svg"> </div>
+        <div id="sym" class="circle circle_bckgrnd big_red"> <span id="ex" class="numbers">!</span> <span id="st" class="numbers">*</span> <span id="pn" class="numbers">#</span> <span id="per" class="numbers">%</span><img id="symCh" class="check" src="images/check.svg"> </div>
+        <div id="length" class="circle circle_bckgrnd big_red"> <span>Length</span>
+            <input id="lenInput" class="text_input" type="search" value="8" disabled> </div>
+        <div id="pattern" class="circle circle_bckgrnd big_red"> <span>Pattern</span>
+            <input id="patInput" class="text_input" type="search"> </div>
+        <div id="hMany" class="circle circle_bckgrnd big_red">
+            <p>How many?</p><input id="hManyInput" class="text_input" type="search" value="10">
+        </div>
+        <div id="strngV" class="circle circle_bckgrnd big_red">
+            <p>Strength</p>
+        </div>
+        <div id="rsnbl" class="circle circle_bckgrnd small_red power">
+            <p>r</p><img id="rsnblCh" class="check powerCh" src="images/check.svg"> </div>
+        <div id="strng" class="circle circle_bckgrnd small_red power">
+            <p>s</p><img id="strngCh" class="check powerCh" src="images/check.svg"> </div>
+        <div id="vstrng" class="circle circle_bckgrnd small_red power">
+            <p>v</p><img id="vstrngCh" class="check powerCh" src="images/check.svg"> </div>
+        <div id="start" class="circle"> <img id="lock" src="images/lock.svg" alt="lock"> <img id="key" src="images/key.svg" alt="key"> </div>  </div><!--    tool wrapper-->
+</div>
+        <div id="passwords">  
+        </div>
+        
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/pass.js"></script>
+</body>
+
+</html>
