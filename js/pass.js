@@ -1,10 +1,26 @@
 
 $(document).ready(function() {
+var bar = new ProgressBar.Circle(container, {
+   strokeWidth: 3,
+  easing: 'easeInOut',
+  duration: 800,
+  color: '#FFEA82',
+  trailColor: '#00FFFFFF',
+  trailWidth: 1,
+  svgStyle: {width: '100%', height: '100%'},
+  from: {color: '#5353fd'},
+  to: {color: '#9d58f0'},
+  step: (state, bar) => {
+    bar.path.setAttribute('stroke', state.color);
+  }
+});
+
+
 var rsnblStr=true,strngStr=false,vstrngStr=false;    
 var addNum=true,addSym=true,addUpper=true,addLower=true;
 var  lowerNum,upperNum,numNum,symNum,totalSet,passLength,setNum,passess=new Array();
 var lNumText=0,uNumText=0,nNumText=0,sNumText=0;
-var upper,lower,num,sym;
+var upper,lower,num,sym,rate=0 ;
     $.getJSON( "parameters.json", function( charSet ) {
           upper=charSet.parameters.UpperCase;
            lower=charSet.parameters.LowerCase;
@@ -133,12 +149,18 @@ $("#length").hover(function(){
     
 });
 
-$("#patInput").blur(function(){
+$("#patInput").focusout(function(){
 
     if($("#patInput").val().trim()==""){
     $("#patInput").css("display", "block").animate({
         width:"0px"
     },"fast","swing");
+        $("#powerScale").animate({
+        width:"200px",height:"200px",top:"20px",left:"20px"
+    },"slow","swing");
+    $("#container").css("display","none");
+        $("#percent").css("display","none");
+         $("#chLength").css("display","none");
 }
 });
 
@@ -154,7 +176,10 @@ $("#hMany").hover(function(){
 $("#patInput").keyup(function(){
  lNumText=0,uNumText=0,nNumText=0,sNumText=0,totalSet=0,passLength=0;
     $("#patInput").val( $("#patInput").val().trim());
-    
+    $("#powerScale").animate({
+        width:"280px",height:"280px",top:"-17px",left:"-20px"
+    },"slow","swing");
+    $("#container").css("display","block");
     var arr = ( $("#patInput").val()).split('');
     passLength=arr.length;
    $.each( arr, function( i, val ) {
@@ -180,7 +205,7 @@ $("#patInput").keyup(function(){
   
     
 passPower("upper:"+uNumText+" - lower:"+lNumText+"- numbers "+nNumText+"- symbols"+sNumText+"- total set"+totalSet,totalSet,passLength);
-
+$("#chLength").text(passLength);
 //    lNumText=0,uNumText=0,nNumText=0,sNumText=0;
 });//keyup function
 //console.log("upper:"+uNumText+" - lower:"+lNumText+"- numbers "+nNumText+"- symbols"+sNumText);
@@ -347,11 +372,33 @@ $("#Aa").click(function(){
       strngStr=false;
       vstrngStr=true;}
     calcLength(getTotalSet());
-    });  
+    });
+
+
+
  //functions   
   function passPower(m,totalSet,passLength){ 
+    console.log("pass power: "+passLength);
+      console.log("totalSet: "+totalSet)
     var power=passLength*(Math.log(totalSet)/Math.log(2))
-    $("h1").text(m+"-power"+power);
+   rate=power/128;
+      if(rate>1)
+          rate=1;
+    bar.animate(rate);  // Number from 0.0 to 1.0
+    if(Math.round(rate*100)<31)
+        $("#percent").css("color","#fd0017");
+      else if(Math.round(rate*100)>30&&Math.round(rate*100)<51)
+          $("#percent").css("color","#ffdd48");
+      else
+           $("#percent").css("color","#015e2e");
+      console.log(rate);
+
+
+      if(totalSet==0)
+         $("#percent").text("");
+      else
+    $("#percent").text(Math.round(rate*100)+"%");
+//    $("h1").text(m+"-power"+power);
 }      
 
   function calcLength(totalSet){

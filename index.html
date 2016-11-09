@@ -22,7 +22,7 @@
         <div id="sym" class="circle circle_bckgrnd big_red"> <span id="ex" class="numbers">!</span> <span id="st" class="numbers">*</span> <span id="pn" class="numbers">#</span> <span id="per" class="numbers">%</span><img id="symCh" class="check" src="images/check.svg"> </div>
         <div id="length" class="circle circle_bckgrnd big_red"> <span>Length</span>
             <input id="lenInput" class="text_input" type="search" value="8" disabled> </div>
-        <div id="pattern" class="circle circle_bckgrnd big_red"> <span>Pattern</span>
+        <div id="pattern" class="circle circle_bckgrnd big_red"> <span>Check</span><span id="chLength"></span>
             <input id="patInput" class="text_input" type="search"> </div>
         <div id="hMany" class="circle circle_bckgrnd big_red">
             <p>How many?</p><input id="hManyInput" class="text_input" type="search" value="10">
@@ -36,13 +36,17 @@
             <p>s</p><img id="strngCh" class="check powerCh" src="images/check.svg"> </div>
         <div id="vstrng" class="circle circle_bckgrnd small_red power">
             <p>v</p><img id="vstrngCh" class="check powerCh" src="images/check.svg"> </div>
-        <div id="start" class="circle"> <img id="lock" src="images/lock.svg" alt="lock"> <img id="key" src="images/key.svg" alt="key"> </div>  </div><!--    tool wrapper-->
+        <div id="start" class="circle"> <img id="lock" src="images/lock.svg" alt="lock"> <img id="key" src="images/key.svg" alt="key"><span id="percent"></span><img id="powerScale" src="images/power_scale.png" alt="power scale"><div id="container"></div></div>
+
+            </div><!--    tool wrapper-->
 </div>
+
         <div id="passwords">  
         </div>
         
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/pass.js"></script>
+    <script src="js/progressbar.js"></script>
 </body>
 
 </html>
