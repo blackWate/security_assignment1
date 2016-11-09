@@ -339,6 +339,7 @@ tr:nth-child(even)		{ background-color:#4A4A4A; }
    /* 80%: */
 font-size: 40px;
 color: #F8E71C;
+font-family: RobotoCondensed-Bold;
 
     left: 128px;
     position: absolute;
