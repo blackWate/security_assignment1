@@ -21,6 +21,7 @@ var addNum=true,addSym=true,addUpper=true,addLower=true;
 var  lowerNum,upperNum,numNum,symNum,totalSet,passLength,setNum,passess=new Array();
 var lNumText=0,uNumText=0,nNumText=0,sNumText=0;
 var upper,lower,num,sym,rate=0 ;
+
     $.getJSON( "parameters.json", function( charSet ) {
           upper=charSet.parameters.UpperCase;
            lower=charSet.parameters.LowerCase;
@@ -171,41 +172,15 @@ $("#hMany").hover(function(){
     
 });    
     
-    
+$("#patInput").on('paste',function(e){
+  $(e.target).keyup();
+    checkPassword();
+//    lNumText=0,uNumText=0,nNumText=0,sNumText=0;
+});
     
 $("#patInput").keyup(function(){
- lNumText=0,uNumText=0,nNumText=0,sNumText=0,totalSet=0,passLength=0;
-    $("#patInput").val( $("#patInput").val().trim());
-    $("#powerScale").animate({
-        width:"280px",height:"280px",top:"-17px",left:"-20px"
-    },"slow","swing");
-    $("#container").css("display","block");
-    var arr = ( $("#patInput").val()).split('');
-    passLength=arr.length;
-   $.each( arr, function( i, val ) {
-       
-       if(upper.indexOf(val)!=-1)
-           uNumText++;
-       else if(lower.indexOf(val)!=-1)
-           lNumText++;
-       else if(num.indexOf(val)!=-1)
-           nNumText++;
-       else if(sym.indexOf(val)!=-1)
-           sNumText++;
-       
-      });//array foreach  
-    if(uNumText>0)
-        totalSet+=upperNum;
-     if(lNumText>0)
-        totalSet+=lowerNum;
-    if(nNumText>0)
-        totalSet+=numNum;
-      if(sNumText>0)
-        totalSet+=symNum; 
   
-    
-passPower("upper:"+uNumText+" - lower:"+lNumText+"- numbers "+nNumText+"- symbols"+sNumText+"- total set"+totalSet,totalSet,passLength);
-$("#chLength").text(passLength);
+    checkPassword();
 //    lNumText=0,uNumText=0,nNumText=0,sNumText=0;
 });//keyup function
 //console.log("upper:"+uNumText+" - lower:"+lNumText+"- numbers "+nNumText+"- symbols"+sNumText);
@@ -376,7 +351,49 @@ $("#Aa").click(function(){
 
 
 
- //functions   
+ //functions
+
+  function checkPassword(){
+
+      lNumText=0,uNumText=0,nNumText=0,sNumText=0,totalSet=0,passLength=0;
+    $("#patInput").val( $("#patInput").val().trim());
+    $("#powerScale").animate({
+        width:"280px",height:"280px",top:"-17px",left:"-20px"
+    },"slow","swing");
+    $("#container").css("display","block");
+    var arr = ( $("#patInput").val()).split('');
+    $("#chLength").css("display","block");
+    $("#percent").css("display","block");
+    passLength=arr.length;
+   $.each( arr, function( i, val ) {
+
+       if(upper.indexOf(val)!=-1)
+           uNumText++;
+       else if(lower.indexOf(val)!=-1)
+           lNumText++;
+       else if(num.indexOf(val)!=-1)
+           nNumText++;
+       else if(sym.indexOf(val)!=-1)
+           sNumText++;
+
+      });//array foreach
+    if(uNumText>0)
+        totalSet+=upperNum;
+     if(lNumText>0)
+        totalSet+=lowerNum;
+    if(nNumText>0)
+        totalSet+=numNum;
+      if(sNumText>0)
+        totalSet+=symNum;
+
+
+passPower("upper:"+uNumText+" - lower:"+lNumText+"- numbers "+nNumText+"- symbols"+sNumText+"- total set"+totalSet,totalSet,passLength);
+$("#chLength").text(passLength);
+
+
+
+  }
+
   function passPower(m,totalSet,passLength){ 
     console.log("pass power: "+passLength);
       console.log("totalSet: "+totalSet)
